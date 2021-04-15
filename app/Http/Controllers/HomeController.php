@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-   public function shoMessage()
-   {
-       return 'You have permission to access this portion';
-   }
+    public function DatabaseConnection()
+    {
+        return DB::select('select * from users');
+    }
 }
