@@ -10,6 +10,6 @@ class StudentController extends Controller
     public function fetchStudents()
     {
         $students = Student::all();
-        return $students;
+        return view('students',compact('students'));
     }
 }
