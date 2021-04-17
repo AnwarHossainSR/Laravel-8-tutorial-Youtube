@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\UriController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SessionController;
 
-Route::get('/', [UriController::class,'retriveUri']);
-Route::post('/user/register', [UriController::class,'showData']);
+Route::get('/get/session', [SessionController::class,'accessSessionData']);
+Route::get('/store/session', [SessionController::class,'storeSessionData']);
+Route::get('/remove/session', [SessionController::class,'removeSessionData']);
