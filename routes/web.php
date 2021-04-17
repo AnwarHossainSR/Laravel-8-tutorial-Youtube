@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UriController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [StudentController::class,'fetchStudents']);
+Route::get('/', [UriController::class,'retriveUri']);
+Route::post('/user/register', [UriController::class,'showData']);
