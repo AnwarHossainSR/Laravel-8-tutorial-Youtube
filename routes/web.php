@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\SessionController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('session');
+    return view('student');
 });
-Route::post('/store', [SessionController::class,'flashMessage']);
+
+Route::post('/store', [StudentController::class,'Create']);
