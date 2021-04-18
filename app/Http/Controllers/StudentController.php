@@ -40,4 +40,11 @@ class StudentController extends Controller
         $student->save();
         return back()->with('success','Data updated successfully');
     }
+
+    public function destroy($id)
+    {
+        $student = Student::find($id);
+        $student->delete();
+        return back()->with('success','Data deleted successfully');
+    }
 }
