@@ -23,4 +23,21 @@ class StudentController extends Controller
         $student->save();
         return back()->with('success','Data added successfully');
     }
+
+    public function edit($id)
+    {
+        $student = Student::find($id);
+        return \view('student',\compact('student'));
+    }
+
+    public function update(Request $req, $id)
+    {
+        $student = Student::find($id);
+
+        $student->name = $req->name;
+        $student->email = $req->email;
+        $student->address = $req->address;
+        $student->save();
+        return back()->with('success','Data updated successfully');
+    }
 }

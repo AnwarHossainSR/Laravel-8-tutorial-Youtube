@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-    <title>Students insert</title>
+    <title>Students Edit</title>
   </head>
   <body>
 
@@ -21,19 +21,20 @@
                   </div>
                 @endif
                 <h1 class="text-primary text-center">Data Insert</h1>
-                <form action="/store" method="POST">
+                <form action="{{ route('student.updtae',$student->id) }}" method="POST">
                     @csrf
+                    @method('put')
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Full name</label>
-                        <input type="text" class="form-control"  name="name" id="exampleFormControlInput1" >
+                        <input type="text" class="form-control"  name="name" value="{{ $student->name }}" id="exampleFormControlInput1" >
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1"  class="form-label">Email address</label>
-                        <input type="email" class="form-control" name="email" id="exampleFormControlInput1" >
+                        <input type="email" class="form-control" name="email" value="{{ $student->email }}"  id="exampleFormControlInput1" >
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1"  class="form-label"> Address</label>
-                        <input type="text" class="form-control" name="address" id="exampleFormControlInput1" >
+                        <input type="text" class="form-control" name="address" value="{{ $student->address }}" id="exampleFormControlInput1" >
                       </div>
                       <div class="mb-3 mt-3">
                         <input type="submit" class="btn btn-primary" value="Submit" >

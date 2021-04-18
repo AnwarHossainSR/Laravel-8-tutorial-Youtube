@@ -43,7 +43,7 @@
                             <td>{{ $student->email }}</td>
                             <td>{{ $student->address }}</td>
                             <td class="d-flex">
-                                <a href="" class="btn btn-success mr-2">Edit</a>
+                                <a href="{{ route('student.edit',$student->id) }}" class="btn btn-success mr-2">Edit</a>
                                 <a href="" class="btn btn-danger ml-2">Delete</a>
                             </td>
                         </tr> 
