@@ -3,8 +3,6 @@
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('student');
-});
+Route::get('/', [StudentController::class,'index']);
 
 Route::post('/store', [StudentController::class,'Create']);
