@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Exception;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -24,6 +26,19 @@ class StudentController extends Controller
 
     public function storeData(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|min:12',
+            'email' => 'required|email',
+            'address' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return \response([
+                'message' => $validator->errors()->all()
+            ]);
+        }
+
         try{
             $student = new Student();
             $student->name = $request->name;
@@ -61,6 +76,45 @@ class StudentController extends Controller
         } catch (\Throwable $th) {
             return \response([
                 'message'=>$th->getMessage()
+            ]);
+        }
+    }
+
+    public function deleteData($id)
+    {
+        try {
+            $student = Student::find($id)->delete();
+
+            return \response([
+                'message'=>'Student deleted'
+            ]);
+        } catch (\Throwable $th) {
+            return \response([
+                'message'=>$th->getMessage()
+            ]);
+        }
+    }
+
+    public function uploadImage(Request $request)
+    {
+        try {
+            if($request->hasFile('image')){
+                $file = $request->file('image');
+                $filename = $file->getClientOriginalName();
+                $picture = \date('His').'-'.$filename;
+                $file->move(\public_path('upload'),$picture);
+                return \response([
+                    'message'=>'Image uploaded',
+                    'file'=>$picture
+                ]);
+            }else{
+                return \response([
+                    'message'=>'Select image first'
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return \response([
+                'message'=> $th->getMessage()
             ]);
         }
     }
